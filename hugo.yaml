@@ -1,6 +1,7 @@
-baseURL: https://thebestwebsite.com/
+baseURL: https://carshowseo.com/
 languageCode: en-us
-title: The Best Website
+title: Car Show SEO - Tips and Tricks to display your event online!
+enableRobotsTXT: true
 module:
    hugoVersion:
     extended: true
@@ -21,3 +22,23 @@ build:
     target: js
   - source: assets/.*\.(.*)$
     target: $1
+
+    markup:
+      tableOfContents:
+        startLevel: 2
+        endLevel: 6
+        ordered: false
+
+  taxonomies:
+  tag: tags
+
+  outputs:
+  home:
+  - html
+  section:
+  - html
+  - rss
+  taxonomy:
+  - html
+  term:
+  - html

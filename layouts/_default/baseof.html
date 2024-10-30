@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta author="Kevin S. Cooke">
-    <title>{{ .Site.Title }}</title>
-    {{ $options := dict "inlineImports" true }}
-    {{ $styles := resources.Get "css/styles.css" }}
-    {{ $styles = $styles  | css.PostCSS $options }}
-    {{ if hugo.IsProduction }}
-      {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+  {{ partial "head.html" . }}
+  <body class="bg-white text-black antialiased dark:bg-gray-950 dark:text-white flex">
+    <section class="xl:max-w-5xl min-h-dvh mx-auto px-4 xl:px-0 flex flex-col grow">
+      {{ partial "header.html" . }}
+      <main class="grow">
+        {{- block "main" . -}}{{- end -}}
+      </main>
+      {{ partial "footer.html" . }}
+    </section>
+    {{ if .Params.showTOC }}
+    <aside class="text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 hidden xl:block">
+      <nav class="p-8 overflow-y-scroll hide-scrollbar max-h-screen [&_a]:text-primary-500 [&_nav]:leading-loose [&_li_li]:ps-4 [&_li]:truncate hover:[&_a]:text-accent-500 sticky top-0">
+      <h2 class="text-xl font-semibold">Contents</h2>
+      {{ .TableOfContents }}
+      </nav>
+    </aside>
     {{ end }}
-    <link href="{{ $styles.RelPermalink }}" rel="stylesheet" >
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div>
-      {{- block "main" . -}}{{- end -}}
-    </div>
+    {{- partial "search.html" . -}}
+    {{ partial "scripts.html" . }}
   </body>
 </html>
