@@ -1,7 +1,6 @@
 ---
 title: 'Using Facebook to Expand the Reach of Your Car Show Listing'
 date: 2024-09-03T16:09:45+02:00
-draft: false
 tags:
   - car show tips
   - facebook
